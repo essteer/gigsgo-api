@@ -15,7 +15,7 @@ $ python3 -m src.main -v 'https://www.example.com'
 
 ```console
 $ source .venv/bin/activate
-$ uvicorn src.app:app --reload --reload-include *.html,*.css
+$ uvicorn app.main:app --reload --reload-include '*.html,*.css'
 ```
 
 ## Development
@@ -25,7 +25,7 @@ $ uvicorn src.app:app --reload --reload-include *.html,*.css
 Scan template files at input file (`-i`) and build them into output file (`-o`):
 
 ```console
-$ tailwindcss -i ./app/static/src/tw.css -o ./app/static/css/main.css
+$ tailwindcss -i ./app/static/src/tw.css -o ./app/static/css/main.css --watch
 ```
 
 - Use the `--watch` argument for a watcher that compiles on save (similar to FastAPI's --reload)
