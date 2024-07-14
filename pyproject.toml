@@ -5,7 +5,9 @@ description = "An ETL pipeline for gig data"
 authors = [{ name = "Elliott Steer", email = "essteer@pm.me" }]
 dependencies = [
     "beautifulsoup4==4.12.3",
+    "fastapi[all]==0.111.0",
     "masquer==1.2.0",
+    "pytailwindcss==0.2.0",
     "requests==2.32.3",
 ]
 requires-python = ">=3.10"
