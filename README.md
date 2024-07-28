@@ -6,7 +6,7 @@ API for gigs data
 
 ```console
 $ source .venv/bin/activate
-$ uvicorn app.main:app --reload --reload-include '*.html,*.css'
+$ uvicorn src.main:app --reload --reload-include '*.html,*.css'
 ```
 
 ## Development
@@ -16,7 +16,7 @@ $ uvicorn app.main:app --reload --reload-include '*.html,*.css'
 Scan template files at input file (`-i`) and build them into output file (`-o`):
 
 ```console
-$ tailwindcss -i ./app/static/src/tw.css -o ./app/static/css/main.css --watch
+$ tailwindcss -i ./src/static/src/tw.css -o ./src/static/css/main.css --watch
 ```
 
 - Use the `--watch` argument for a watcher that compiles on save (similar to FastAPI's --reload)
