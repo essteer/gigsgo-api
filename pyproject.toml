@@ -1,19 +1,16 @@
 [project]
-name = "gigshk-pipeline"
+name = "gigsgo-api"
 dynamic = ["version"]
-description = "An ETL pipeline for gig data"
+description = "API for gigs data"
 authors = [{ name = "Elliott Steer", email = "essteer@pm.me" }]
 dependencies = [
-    "beautifulsoup4==4.12.3",
     "fastapi[all]==0.111.0",
-    "masquer==1.2.0",
     "pytailwindcss==0.2.0",
-    "requests==2.32.3",
 ]
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 readme = "README.md"
-keywords = ["API", "ETL", "web-scraping"]
+keywords = ["API", "web"]
 classifiers = [
     "Development Status :: 1 - Planning",
     "Operating System :: OS Independent",
@@ -33,6 +30,6 @@ dev = [
 ]
 
 [project.urls]
-documentation = "https://github.com/essteer/gigshk-pipeline/blob/main/README.md"
-repository = "https://github.com/essteer/gigshk-pipeline"
-issues = "https://github.com/essteer/gigshk-pipeline/issues"
+documentation = "https://github.com/essteer/gigsgo-api/blob/main/README.md"
+repository = "https://github.com/essteer/gigsgo-api"
+issues = "https://github.com/essteer/gigsgo-api/issues"
