@@ -1,34 +1,29 @@
-import argparse
-import os
-import sys
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
-sys.path.append(os.path.join(os.path.dirname(__file__)))
-from utils.pipeline import data_pipeline
+from src.config import Settings
+from src.routes import router
+
+settings = Settings()
 
 
-def main():
+def get_app() -> FastAPI:
     """
-    Runs the data pipeline with a user-provided URL
-
-    Terminal command:
-    $ python3 -m src.main [-v] 'https://www.example.com'
+    Create FastAPI app with specified settings
     """
-    parser = argparse.ArgumentParser(description="Run data pipeline with target URL")
-    parser.add_argument(
-        "target", type=str, help="target URL -> 'https://www.example.com'"
-    )
-    parser.add_argument(
-        "-v", "--verbose", action="store_true", help="print formatted matches"
-    )
+    app = FastAPI(**settings.fastapi_kwargs)
+    # Mount CSS
+    app.mount("/static", StaticFiles(directory=settings.STATIC_DIR), name="static")
+    # Add routes
+    app.include_router(router)
 
-    args = parser.parse_args()
+    return app
 
-    formatted_matches = data_pipeline(target=args.target)
 
-    if args.verbose:
-        for match in formatted_matches:
-            print(match, "\n")
+app = get_app()
 
 
 if __name__ == "__main__":
-    main()
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)
