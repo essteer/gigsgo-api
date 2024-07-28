@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     TEMPLATE_DIR: Path = APP_DIR / "templates"
 
     FASTAPI_PROPERTIES: dict[str, Any] = {
-        "title": "Gigs HK",
+        "title": "Gigsgo",
         "description": "Live music listings",
         "version": "0.0.1",
         "default_response_class": HTMLResponse,  # Override default JSONResponse
