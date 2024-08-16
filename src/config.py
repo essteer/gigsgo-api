@@ -9,12 +9,16 @@ APP_DIR = Path(__file__).resolve().parent
 
 class Settings(BaseSettings):
     APP_DIR: Path = APP_DIR
-
+    
     STATIC_DIR: Path = APP_DIR / "static"
     TEMPLATE_DIR: Path = APP_DIR / "templates"
 
+    DATA_DIR: Path = APP_DIR.parent / "data"
+    RAW_DATA: str = "data.json"
+    DATABASE: str = "_database.json"
+
     FASTAPI_PROPERTIES: dict[str, Any] = {
-        "title": "Gigsgo",
+        "title": "Gigsgo.at",
         "description": "Live music listings",
         "version": "0.0.1",
         "default_response_class": HTMLResponse,  # Override default JSONResponse
