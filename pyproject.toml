@@ -6,6 +6,7 @@ authors = [{ name = "Elliott Steer", email = "essteer@pm.me" }]
 dependencies = [
     "fastapi[all]==0.111.0",
     "pytailwindcss==0.2.0",
+    "tinydb==4.8.0"
 ]
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
