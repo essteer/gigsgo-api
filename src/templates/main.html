@@ -1,12 +1,6 @@
 {% extends "/shared/_base.html" %}
 
 {% block content %}
-
-<section class="bg-zinc-800 max-w-screen-xxxl">
-    <h1 class="px-3 py-1 mx-2 text-3xl text-stone-200 font-bold flex justify-center">Gigsgo.at</h1>
-    <p class="px-3 py-1 mx-2 text-emerald-500 font-bold flex justify-center">Live music listings.</p>
-</section>
-
 <section id="body" class="flex flex-col bg-slate-50 justify-center items-center max-w-screen-sm m-auto">
     {% for event in events %}
     <div class="bg-sky-500 flex flex-col justify-center items-center py-10">
