@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,11 @@ class Settings(BaseSettings):
     }
 
     DISABLE_DOCS: bool = True
+    
+    LOG_DIR: Path = APP_DIR.parent / "logs"
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    LOG_FILE: str = str(LOG_DIR / "app.log")
+    LOG_LEVEL: str = "DEBUG"
 
     @property
     def fastapi_kwargs(self) -> dict[str, Any]:
@@ -45,3 +51,15 @@ class Settings(BaseSettings):
                 }
             )
         return fastapi_kwargs
+
+
+    def setup_logging(self):
+        """
+        Creates a logger with default settings
+        """
+        logging.basicConfig(
+            filename=self.LOG_FILE,
+            level=getattr(logging, self.LOG_LEVEL.upper(), logging.INFO),
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
