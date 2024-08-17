@@ -17,8 +17,7 @@ class CRUD:
         
         Parameters
         ----------
-        db_path : str
-            path to TinyDB database file
+        db_path : str -> path to TinyDB database file
         """
         try:
             self.db = TinyDB(path=db_path, indent=4, separators=(",", ": "), encoding="utf-8")
@@ -39,8 +38,7 @@ class CRUD:
         
         Parameters
         ----------
-        init_data_path : str
-            path to the source JSON file
+        init_data_path : str -> path to the source JSON file
         """
         try :
             with open(init_data_path, "r", encoding="utf-8") as f:
@@ -68,8 +66,7 @@ class CRUD:
         
         Parameter
         ---------
-        item : dict
-            item to create in database
+        item : dict -> item to create in database
         """
         try:
             if "_id" not in item:
@@ -92,8 +89,7 @@ class CRUD:
         
         Returns
         -------
-        items : list[dict]
-            list of all database items
+        items : list[dict] -> all database items
         """
         try:
             items = self.db.all()
@@ -110,16 +106,12 @@ class CRUD:
         
         Parameters
         ----------
-        key : str
-            key attribute to search for in database
-        
-        value : str
-            value to match against specified key
+        key : str -> attribute to search for in database
+        value : str -> value to match against specified key
             
         Returns
         -------
-        results : list[dict]
-            list of database items that match the find query
+        results : list[dict] -> database items that match the find query
         """
         try:
             q = getattr(self.query, key)
@@ -141,16 +133,12 @@ class CRUD:
         
         Parameters
         ----------
-        key : str
-            key attribute to search for in database
-        
-        value : str
-            value to match against specified key
+        key : str -> attribute to search for in database
+        value : str -> value to match against specified key
             
         Returns
         -------
-        results : list[dict]
-            list of database items that match the search query
+        results : list[dict] -> database items that match the search query
         """
         try:
             q = getattr(self.query, key)
@@ -174,11 +162,8 @@ class CRUD:
         
         Parameters
         ----------
-        item_id : str
-            _id of item to update in database
-        
-        updated_fields : dict
-           fields to update for this item
+        item_id : str -> _id of item to update in database
+        updated_fields : dict -> fields to update for this item
         """
         try:
             item_in_db = self.db.search(self.query._id == item_id)
@@ -200,8 +185,7 @@ class CRUD:
         
         Parameters
         ----------
-        item_id : str
-            _id of item to delete from database
+        item_id : str -> _id of item to delete from database
         """
         try:
             item_in_db = self.db.search(self.query._id == item_id)
