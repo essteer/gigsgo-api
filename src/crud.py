@@ -78,9 +78,9 @@ class CRUD:
                 logger.info(f"Item create OK for _id: {item['_id']}")
         
         except (TypeError, ValueError) as e:
-            logger.error(f"Item create error for _id {item.get('_id', "unknown")}: {e}")
+            logger.error(f"Item create error for _id {item.get('_id', 'unknown')}: {e}")
         except Exception as e:
-            logger.error(f"Unexpected item create error for _id {item.get('_id', "unknown")}: {e}")
+            logger.error(f"Unexpected item create error for _id {item.get('_id', 'unknown')}: {e}")
 
 
     def read_all(self) -> list[dict]:
