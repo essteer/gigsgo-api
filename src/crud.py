@@ -72,15 +72,15 @@ class CRUD:
             if "_id" not in item:
                 item["_id"] = str(uuid.uuid4())
             if self.find("_id", item["_id"]):
-                logger.debug(f"Item _id already in db: {item["_id"]}")
+                logger.debug(f"Item _id already in db: {item['_id']}")
             else:
                 self.db.insert(item)
-                logger.info(f"Item create OK for _id: {item["_id"]}")
+                logger.info(f"Item create OK for _id: {item['_id']}")
         
         except (TypeError, ValueError) as e:
-            logger.error(f"Item create error for _id {item.get("_id", "unknown")}: {e}")
+            logger.error(f"Item create error for _id {item.get('_id', "unknown")}: {e}")
         except Exception as e:
-            logger.error(f"Unexpected item create error for _id {item.get("_id", "unknown")}: {e}")
+            logger.error(f"Unexpected item create error for _id {item.get('_id', "unknown")}: {e}")
 
 
     def read_all(self) -> list[dict]:
