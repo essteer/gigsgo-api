@@ -26,8 +26,9 @@ class Settings(BaseSettings):
     }
 
     DISABLE_DOCS: bool = True
-
+    
     LOG_DIR: Path = APP_DIR.parent / "logs"
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
     LOG_FILE: str = str(LOG_DIR / "app.log")
     LOG_LEVEL: str = "DEBUG"
 
