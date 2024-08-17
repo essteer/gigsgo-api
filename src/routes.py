@@ -16,7 +16,7 @@ def index(request: Request):
     init_data_path = str(settings.DATA_DIR / settings.RAW_DATA)
     db = CRUD(db_path=db_path)
     db.init_db(init_data_path=init_data_path)
-    events = db.all_items()
+    events = db.read_all()
     
     return templates.TemplateResponse(
         "main.html",
