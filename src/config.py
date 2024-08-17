@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     DATA_DIR: Path = APP_DIR.parent / "data"
     RAW_DATA: str = "data.json"
-    DATABASE: str = "_database.json"
+    DATABASE: str = "_db.json"
 
     FASTAPI_PROPERTIES: dict[str, Any] = {
         "title": "Gigsgo.at",

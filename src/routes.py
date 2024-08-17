@@ -12,7 +12,10 @@ router = APIRouter()
 @router.get("/")
 def index(request: Request):
     
-    db = CRUD(db_path=str(settings.DATA_DIR / settings.DATABASE))
+    db_path = str(settings.DATA_DIR / settings.DATABASE)
+    init_data_path = str(settings.DATA_DIR / settings.RAW_DATA)
+    db = CRUD(db_path=db_path)
+    db.init_db(init_data_path=init_data_path)
     events = db.all_items()
     
     return templates.TemplateResponse(

@@ -12,12 +12,10 @@ class CRUD:
     def __init__(self, db_path: str):
         self.db = TinyDB(path=db_path, indent=4, separators=(",", ": "), encoding="utf-8")
         self.query = Query()
-        self.init_db()
         
-    def init_db(self):
-        data_path = str(settings.DATA_DIR / settings.RAW_DATA)
+    def init_db(self, init_data_path):
         try :
-            with open(data_path, "r", encoding="utf-8") as f:
+            with open(init_data_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
             for item in data:
                 self.add_item(item)
@@ -49,15 +47,12 @@ class CRUD:
         
     
 if __name__ == "__main__":
+    
     db_path = str(settings.DATA_DIR / settings.DATABASE)
-    crud = CRUD(db_path=db_path)
+    init_data_path = str(settings.DATA_DIR / settings.RAW_DATA)
+    db = CRUD(db_path=db_path)
+    db.init_db(init_data_path=init_data_path)
+    events = db.all_items()
     
-    data_path = str(settings.DATA_DIR / settings.RAW_DATA)
-    with open(data_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-        
-    for item in data:
-        crud.add_item(item)
-    
-    all_items = crud.all_items()
+    all_items = db.all_items()
     print(all_items)
