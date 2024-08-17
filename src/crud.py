@@ -124,7 +124,7 @@ class CRUD:
         try:
             q = getattr(self.query, key)
             results = self.db.search(q == value)
-            logger.info(f"Item find OK for key='{key}', value='{value}': {len(results)} matches found")
+            logger.debug(f"Item find OK for key='{key}', value='{value}': {len(results)} matches found")
             return results
     
         except AttributeError as e:
@@ -155,7 +155,7 @@ class CRUD:
         try:
             q = getattr(self.query, key)
             results = self.db.search(q.search(f"{value}+", flags=re.IGNORECASE))
-            logger.info(f"Item search OK for key='{key}', value='{value}': {len(results)} matches found")
+            logger.debug(f"Item search OK for key='{key}', value='{value}': {len(results)} matches found")
             return results
         
         except AttributeError as e:
