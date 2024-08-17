@@ -5,6 +5,7 @@ from src.config import Settings
 from src.routes import router
 
 settings = Settings()
+settings.setup_logging()
 
 
 def get_app() -> FastAPI:
