@@ -5,24 +5,57 @@
     {% for event in events %}
     <div class="bg-sky-500 flex flex-col justify-center items-center py-10">
         <div class="px-3 py-1 mx-2 flex flex-col justify-center content-center text-center">
+            
             <p class="uppercase font-bold font-oswald">
                 {{ event.weekday }} {{ event.date }}/{{ event.month }}
             </p>
-            <p>
-                {{ event.desc }}
-            </p>
-            <ul class="py-1">
+
+            {% if "venue" in event %}
+                <p class="text-xl uppercase font-bold font-oswald">
+                    {{ event.venue }}
+                </p>
+            {% endif %}
+
+            {% if event.close == "??:??" %}
+                <p class="font-oswald">{{ event.open }}</p>
+            {% else %}
+                <p class="font-oswald">{{ event.open }} — {{ event.close }}</p>
+            {% endif %}
+
+            <ul class="py-1 font-bold font-oswald">
                 {% for band in event.bands %}
                     <li>{{ band.name }} ({{ band.genre | join(', ') }})</li>
                 {% endfor %}
             </ul>
-            <p>
-                {{ event.venue }}
-            </p>
-            <p>{{ event.open }} - {{ event.close }}</p>
-            <p>Tickets: {{ event.tickets.standard }}</p>
+            
+            {% if "venue" in event %}
+                <p class="font-notoSerif">{{ event.address_en }}</p>
+                <p>{{ event.address_cn }}</p>
+            {% else %}
+                {% if "address_raw" in event and event.address_raw != "" %}
+                    <p class="font-notoSerif">{{ event.address_raw }}</p>
+                {% elif "desc" in event and event.desc != "" %}
+                    <p class="font-notoSerif">{{ event.desc }}</p>
+                {% endif %}
+            {% endif %}
+            
+
+            {% if 0 in event.tickets.values() %}
+                <p class="uppercase font-bold">free entry</p>
+            {% else %}
+                <p class="uppercase font-bold">
+                    {% for ticket_class, price in event.tickets.items() %}
+                        {{ ticket_class.capitalize() }} ${{ price }}{% if not loop.last %} | {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
         </div>
     </div>
+    {% if not loop.last %}
+        <hr class="w-full border-t-2 border-slate-500 my-1">
+    {% endif %}
     {% endfor %}
 </section>
 {% endblock %}
+
+
