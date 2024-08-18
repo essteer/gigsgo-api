@@ -5,20 +5,20 @@
     {% for event in events %}
     <div class="bg-sky-500 flex flex-col justify-center items-center py-10">
         <div class="px-3 py-1 mx-2 flex flex-col justify-center content-center text-center">
-            <p class="uppercase font-bold">
-                {{ event.weekday }} {{ event.date }}/{{ event.month }}:
+            <p class="uppercase font-bold font-oswald">
+                {{ event.weekday }} {{ event.date }}/{{ event.month }}
             </p>
             <p>
                 {{ event.desc }}
-            </p>
-            <p>
-                {{ event.venue }}
             </p>
             <ul class="py-1">
                 {% for band in event.bands %}
                     <li>{{ band.name }} ({{ band.genre | join(', ') }})</li>
                 {% endfor %}
             </ul>
+            <p>
+                {{ event.venue }}
+            </p>
             <p>{{ event.open }} - {{ event.close }}</p>
             <p>Tickets: {{ event.tickets.standard }}</p>
         </div>
