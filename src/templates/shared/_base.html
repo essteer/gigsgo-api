@@ -16,14 +16,25 @@
     <!-- CSS -->
     <!-- <link rel="stylesheet" href="/static/css/main.css" type="text/css" /> -->
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}" type="text/css" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Serif:wght@400;700&family=Oswald:wght@400;500;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&family=ZCOOL+QingKe+HuangYou&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'" />
 </head>
 
-<body class="bg-zinc-900">
-    <section class="bg-zinc-800 max-w-screen-xxxl">
-        <h1 class="px-3 py-1 mx-2 text-3xl text-stone-200 font-bold flex justify-center">Gigsgo.at</h1>
-        <p class="px-3 py-1 mx-2 text-emerald-500 font-bold flex justify-center">Live music listings.</p>
-    </section>
-    {% block content %}
+<body class="bg-zinc-900 flex flex-col h-screen">
+    {% block header %}
+    {% include "/shared/_header.html" %}
+    {% endblock %}
+
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block footer %}
+    {% include "/shared/_footer.html" %}
     {% endblock %}
 </body>
 

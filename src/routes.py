@@ -26,31 +26,25 @@ def index(request: Request):
         
         logger.info("Rendering main.html template with events")
         return templates.TemplateResponse(
+            request,
             "main.html",
-            {
-                "request": request,
-                "events": events
-            }, 
+            {"events": events}
         )
 
     except FileNotFoundError as e:
         logger.error(f"File not found during index processing: {e}")
         return templates.TemplateResponse(
+            request,
             "error.html",
-            {
-                "request": request,
-                "message": "Data files missing. Please contact support."
-            },
+            {"message": "Data files missing. Please contact support."},
             status_code=500
         )
     except Exception as e:
         logger.error(f"Unexpected error in index route: {e}")
         return templates.TemplateResponse(
+            request,
             "error.html",
-            {
-                "request": request,
-                "message": "An unexpected error occurred. Please try again later."
-            },
+            {"message": "An unexpected error occurred. Please try again later."},
             status_code=500
         )
 
@@ -62,10 +56,8 @@ def test_error(request: Request):
     except ValueError as e:
         logger.error(f"Test error: {e}")
         return templates.TemplateResponse(
+            request,
             "error.html",
-            {
-                "request": request,
-                "message": "This is a simulated error for testing purposes."
-            },
+            {"message": "This is a simulated error for testing purposes."},
             status_code=500
         )
