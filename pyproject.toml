@@ -1,7 +1,7 @@
 [project]
 name = "gigsgo-api"
 dynamic = ["version"]
-description = "API for gigs data"
+description = "An API and web app for live music listings."
 authors = [{ name = "Elliott Steer", email = "essteer@pm.me" }]
 dependencies = [
     "fastapi[all]==0.111.0",
