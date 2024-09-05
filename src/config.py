@@ -10,7 +10,7 @@ APP_DIR = Path(__file__).resolve().parent
 
 class Settings(BaseSettings):
     APP_DIR: Path = APP_DIR
-    
+
     STATIC_DIR: Path = APP_DIR / "static"
     TEMPLATE_DIR: Path = APP_DIR / "templates"
 
@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     }
 
     DISABLE_DOCS: bool = True
-    
+
     LOG_DIR: Path = APP_DIR.parent / "logs"
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     LOG_FILE: str = str(LOG_DIR / "app.log")
@@ -37,8 +37,10 @@ class Settings(BaseSettings):
         """
         Creates dict of values to pass to FastAPI app as **kwargs
 
-        Returns:
-            dict: This can be unpacked as **kwargs to pass to FastAPI app.
+        Returns
+        -------
+        fastapi_kwargs : dict
+            Can be unpacked as **kwargs to pass to FastAPI app.
         """
         fastapi_kwargs = self.FASTAPI_PROPERTIES
         if self.DISABLE_DOCS:
@@ -52,14 +54,11 @@ class Settings(BaseSettings):
             )
         return fastapi_kwargs
 
-
     def setup_logging(self):
-        """
-        Creates a logger with default settings
-        """
+        """Creates a logger with default settings"""
         logging.basicConfig(
             filename=self.LOG_FILE,
             level=getattr(logging, self.LOG_LEVEL.upper(), logging.INFO),
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S'
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
         )

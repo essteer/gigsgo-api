@@ -2,6 +2,7 @@ import unittest
 from fastapi.testclient import TestClient
 from src.main import get_app
 
+
 class TestFastAPIApp(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -21,4 +22,3 @@ class TestFastAPIApp(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    

@@ -16,16 +16,15 @@ test_data = [
 
 
 class TestCRUD(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         """Setup test database and data"""
         TEST_DATA_DIR.mkdir(parents=True, exist_ok=True)
         cls.crud = CRUD(db_path=str(TEST_DB_PATH))
-        
+
         with open(TEST_DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(test_data, f)
-        
+
         cls.crud.init_db(init_data_path=TEST_DATA_PATH)
 
     @classmethod
@@ -37,7 +36,7 @@ class TestCRUD(unittest.TestCase):
             os.remove(TEST_DATA_PATH)
         if TEST_DATA_DIR.exists():
             os.rmdir(TEST_DATA_DIR)
-            
+
     def test_read_all(self):
         """Test reading all items"""
         items = self.crud.read_all()
@@ -75,7 +74,7 @@ class TestCRUD(unittest.TestCase):
         """Test searching items"""
         result = self.crud.search("name", "Event")
         self.assertGreater(len(result), 0)
-        self.assertTrue(all("Event"in item["name"] for item in result))
+        self.assertTrue(all("Event" in item["name"] for item in result))
 
 
 if __name__ == "__main__":

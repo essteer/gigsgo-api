@@ -16,20 +16,16 @@ def index(request: Request):
     try:
         db_path = str(settings.DATA_DIR / settings.DATABASE)
         init_data_path = str(settings.DATA_DIR / settings.RAW_DATA)
-        
+
         logger.info("Initialising database")
         db = CRUD(db_path=db_path)
         db.init_db(init_data_path=init_data_path)
-        
+
         logger.info("Reading all items from database")
         events = db.read_all()
-        
+
         logger.info("Rendering main.html template with events")
-        return templates.TemplateResponse(
-            request,
-            "main.html",
-            {"events": events}
-        )
+        return templates.TemplateResponse(request, "main.html", {"events": events})
 
     except FileNotFoundError as e:
         logger.error(f"File not found during index processing: {e}")
@@ -37,7 +33,7 @@ def index(request: Request):
             request,
             "error.html",
             {"message": "Data files missing. Please contact support."},
-            status_code=500
+            status_code=500,
         )
     except Exception as e:
         logger.error(f"Unexpected error in index route: {e}")
@@ -45,7 +41,7 @@ def index(request: Request):
             request,
             "error.html",
             {"message": "An unexpected error occurred. Please try again later."},
-            status_code=500
+            status_code=500,
         )
 
 
@@ -59,5 +55,5 @@ def test_error(request: Request):
             request,
             "error.html",
             {"message": "This is a simulated error for testing purposes."},
-            status_code=500
+            status_code=500,
         )
