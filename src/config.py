@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     LOG_DIR: Path = APP_DIR.parent / "logs"
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     LOG_FILE: str = str(LOG_DIR / "app.log")
-    LOG_LEVEL: str = "DEBUG"
+    LOG_LEVEL: str = "INFO"
 
     @property
     def fastapi_kwargs(self) -> dict[str, Any]:
