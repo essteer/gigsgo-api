@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      notoSerif: ["Noto Serif"],
       oswald: ["Oswald"],
+      zcool: ["ZCOOL QingKe HuangYou"]
     }
   },
   plugins: [],

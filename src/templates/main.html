@@ -1,67 +1,107 @@
 {% extends "/shared/_base.html" %}
 
 {% block content %}
-<section id="body" class="bg-zinc-800 flex flex-col items-center justify-center m-auto max-w-screen-sm">
+<section id="body" class="bg-zinc-800 flex flex-col font-oswald items-center justify-center m-auto max-w-screen-sm">
+
+    <div class="bg-indigo-600 flex flex-wrap gap-2 italic justify-center px-3 py-1 text-xl max-w-3xl mx-auto">
+
+        <div class="my-1"></div>
+
+        <div class="flex flex-wrap gap-2 italic justify-center px-3 py-1 text-xl">
+            <span class="inline-flex items-center px-2 whitespace-nowrap">blues<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">folk<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">funk<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">hip-hop<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">jazz<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">metal<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">pop<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">r&b<span class="ml-1">[ ]</span></span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap">rock<span class="ml-1">[ ]</span></span>
+        </div>
+
+        <div class="my-1"></div>
+    </div>
+
+    <div class="my-1 w-full"></div>
+
+    <div class="bg-emerald-600 flex flex-wrap gap-2 italic justify-center px-3 py-1 text-xl min-w-full mx-auto">
+        <div class="my-1"></div>
+        
+        <div class="w-full sm:w-auto flex flex-wrap justify-center">
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;mon&nbsp;<span class="font-zcool">一</span>&nbsp;]</span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;tue&nbsp;<span class="font-zcool">二</span>&nbsp;]</span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;wed&nbsp;<span class="font-zcool">三</span>&nbsp;]</span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;thu&nbsp;<span class="font-zcool">四</span>&nbsp;]</span>
+        </div>
+        <div class="w-full sm:w-auto flex flex-wrap justify-center">
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;fri&nbsp;<span class="font-zcool">五</span>&nbsp;]</span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;sat&nbsp;<span class="font-zcool">六</span>&nbsp;]</span>
+            <span class="inline-flex items-center px-2 whitespace-nowrap m-1">[&nbsp;sun&nbsp;<span class="font-zcool">日</span>&nbsp;]</span>
+        </div>
+
+        <div class="my-1"></div>
+    </div>
+
+    <div class="my-1 w-full"></div>
+
     {% for event in events %}
     <div class="bg-rose-800 flex flex-col font-oswald items-center justify-center min-w-full py-10">
         <div class="content-center flex flex-col justify-center mx-2 px-3 py-1 text-center">
-            
+
             <p class="font-bold text-xl uppercase">
                 {{ event.weekday }} {{ event.date }}/{{ event.month }}
             </p>
 
             {% if "venue" in event %}
-                <p class="font-bold text-6xl uppercase"> 
-                    {{ event.venue }}
-                </p>
+            <p class="font-bold text-6xl uppercase">
+                {{ event.venue }}
+            </p>
             {% endif %}
 
             {% if event.close == "??:??" %}
-                <p class="text-xl">{{ event.open }}</p>
+            <p class="text-xl">{{ event.open }}</p>
             {% else %}
-                <p class="text-xl">{{ event.open }} — {{ event.close }}</p>
+            <p class="text-xl">{{ event.open }} — {{ event.close }}</p>
             {% endif %}
 
             <div class="my-1"></div>
 
             <ul class="font-bold py-1 text-3xl">
                 {% for band in event.bands %}
-                    <li class="flex flex-col items-center mb-4">
-                        <span>{{ band.name }}</span>
-                        <span class="italic text-center text-sm">{{ band.genre | join(', ') }}</span>
-                    </li>
+                <li class="flex flex-col items-center mb-4">
+                    <span>{{ band.name }}</span>
+                    <span class="italic text-center text-sm">{{ band.genre | join(', ') }}</span>
+                </li>
                 {% endfor %}
             </ul>
-            
+
             {% if "venue" in event %}
-                <p>{{ event.address_en }}</p>
-                <p class="text-lg">{{ event.address_cn }}</p>
+            <p>{{ event.address_en }}</p>
+            <p class="text-lg">{{ event.address_cn }}</p>
             {% else %}
-                {% if "address_raw" in event and event.address_raw != "" %}
-                    <p>{{ event.address_raw }}</p>
-                {% elif "desc" in event and event.desc != "" %}
-                    <p>{{ event.desc }}</p>
-                {% endif %}
+            {% if "address_raw" in event and event.address_raw != "" %}
+            <p>{{ event.address_raw }}</p>
+            {% elif "desc" in event and event.desc != "" %}
+            <p>{{ event.desc }}</p>
+            {% endif %}
             {% endif %}
 
             <div class="my-1"></div>
 
             {% if 0 in event.tickets.values() %}
-                <p class="font-bold text-3xl uppercase">free entry</p>
+            <p class="font-bold text-3xl uppercase">free entry</p>
             {% else %}
-                <p class="font-bold text-2xl uppercase">
-                    {% for ticket_class, price in event.tickets.items() %}
-                        {{ ticket_class.capitalize() }} ${{ price }}{% if not loop.last %} | {% endif %}
-                    {% endfor %}
-                </p>
+            <p class="font-bold text-2xl uppercase">
+                {% for ticket_class, price in event.tickets.items() %}
+                {{ ticket_class.capitalize() }} ${{ price }}{% if not loop.last %} | {% endif %}
+                {% endfor %}
+            </p>
             {% endif %}
         </div>
     </div>
     {% if not loop.last %}
-        <div class="my-1 w-full"></div>
+    <div class="my-1 w-full"></div>
     {% endif %}
     {% endfor %}
 </section>
 {% endblock %}
-
-
